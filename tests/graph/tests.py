@@ -1,5 +1,5 @@
 import unittest
-from graph.Graph import UndirectedGraph
+from src.graph.Graph import UndirectedGraph
 
 
 class TestGraphMethods(unittest.TestCase):
