@@ -13,16 +13,23 @@ class UndirectedGraph:
         self._mult_factor = mult_factor
         self.adjacency_matrix = np.zeros((self._dim, self._dim))
 
-    def add(self, node_1, node_2, edge):
+    def add_edge(self, node_1, node_2, edge):
         self._add_node(node_1)
         self._add_node(node_2)
         self._add_edge(node_1, node_2, edge)
 
-    def get_edge(self, node_1, node_2):
-        i = self._nodes[node_1]
-        j = self._nodes[node_2]
-        edge = self.adjacency_matrix[i][j]
-        return edge
+    def add_node(self, node):
+        self._add_node(node)
+
+    def edge(self, node_1, node_2):
+        edge_weight = None
+        if self.__contains__(node_1) and self.__contains__(node_2):
+            i = self._nodes[node_1]
+            j = self._nodes[node_2]
+            edge_weight = self.adjacency_matrix[i][j]
+            if edge_weight == 0:
+                edge_weight = None
+        return edge_weight
 
     def expand(self, node, sort=False, reverse=False):
         vector = self.adjacency_matrix[self._nodes[node]]
@@ -39,6 +46,9 @@ class UndirectedGraph:
     @property
     def nodes(self):
         return list(self._nodes.keys())
+
+    def __contains__(self, node):
+        return node in self.nodes
 
     def _add_node(self, node):
         if node not in self._nodes.keys():
