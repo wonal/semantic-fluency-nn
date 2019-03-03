@@ -1,89 +1,230 @@
-# semantic-fluency-nn
 
-One Paragraph of project description goes here
-
-Test Dataset: https://www.kaggle.com/zynicide/wine-reviews
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
+# Semantic Fluency
+    Artificial Intelligence
+    Winter 2019
+    CS 441
+    Test Dataset: https://www.kaggle.com/zynicide/wine-reviews
+    
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Zach Bohley** 
+* **Michelle Duer** 
+* **Alli Wong** 
+* **Carson Cook** 
+* **Jacob Collins** 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+# Table of contents
+1. [Introduction](#introduction)
+2. [Graph API](#graph_api)
+    1. [Import](#graph_import)
+    2. [Create a graph](#graph_create)
+    3. [Add an edge](#graph_add_edge)
+    4. [Get an edge weight given two nodes](#graph_add_edge)
+    5. [Expand a node](#graph_expand)
+    6. [Example](#graph_example)
+9999. [Testing](#testing)
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+## 1 Introduction <a name="introduction"></a>
+Intro goes here
 
-## Acknowledgments
+## 2 Graph API <a name="graph_api"></a>
+The UndirectedGraph class implements a graph using an adjacency matrix. This graph cannot contain self-edges, or repeated edges. Each column and row represents a node in the graph. The node represented by the ith column is the same node represented by the ith row. An edge weight of 0 means there is no edge, but the existence of a non-zero float implies an edge between the nodes.
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+For the context of this API, a node can be of any type. In the examples I use both a string and an integer to demonstrate this. The UndirectedGraph class uses a dictionary to store the node -> row/column integer pairs. This class provides no way to delete a node after it has been added (this can be changed if someone needs that functionality).
+
+### 2.1 Import <a name="graph_import"></a>
+
+
+```python
+import os
+os.chdir('..')
+
+from src.graph.Graph import UndirectedGraph
+```
+
+### 2.2 Create a graph: <a name="graph_create"></a>
+
+
+```python
+g = UndirectedGraph()
+```
+
+### 2.3 Add an edge: <a name="graph_add_edge"></a>
+    Input: Two nodes and a float representing the edge weight
+    Output: None
+
+
+```python
+first_node = 'Gold'
+second_node = 'Silver'
+edge_weight = 0.01017856140726281
+
+g.add_edge(first_node, second_node, edge_weight)
+```
+
+### 2.4 Get an edge weight given two nodes: <a name="graph_get_weight"></a>
+    Input: Two nodes
+    Output: An edge weight
+
+
+```python
+g.edge(first_node, second_node)
+```
+
+
+
+
+    0.01017856140726281
+
+
+
+### 2.5 Expand a node: <a name="graph_expand"></a>
+    Input: A node
+    Output: A list of tuples. The 0th element is an adjacent node, and the 1st element is an edge.
+
+
+```python
+g.expand('Gold', sort=True)
+```
+
+
+
+
+    [('Silver', 0.01017856140726281)]
+
+
+
+### 2.6 Get a list of the nodes: <a name="graph_nodes"></a>
+
+
+```python
+g.nodes
+```
+
+
+
+
+    ['Gold', 'Silver']
+
+
+
+### 2.7 Example: <a name="graph_example"></a>
+This example places the numbers 0-9 into a graph with some random number edge weight.
+
+
+```python
+import numpy as np
+
+np.random.seed(8)
+
+g = UndirectedGraph()
+for i in range(0, 10):
+    for j in range(0, 10):
+        g.add_edge(i, j, np.random.randint(0, 100))
+```
+
+The expand function gives the list of (node, edge) tuples in the order that they are in the adjacency matrix.
+
+
+```python
+g.expand(4)
+```
+
+
+
+
+    [(0, 86.0),
+     (1, 31.0),
+     (2, 20.0),
+     (3, 45.0),
+     (5, 2.0),
+     (6, 66.0),
+     (7, 73.0),
+     (8, 16.0),
+     (9, 28.0)]
+
+
+
+The expand function has an option for sorting the edge weights. The default sort is ascending order.
+
+
+```python
+g.expand(4, sort=True)
+```
+
+
+
+
+    [(5, 2.0),
+     (8, 16.0),
+     (2, 20.0),
+     (9, 28.0),
+     (1, 31.0),
+     (3, 45.0),
+     (6, 66.0),
+     (7, 73.0),
+     (0, 86.0)]
+
+
+
+The expand function also has an option for reversing the order of the list, whether it is sorted or not. This is what happens with a sorted list.
+
+
+```python
+g.expand(4, sort=True, reverse=True)
+```
+
+
+
+
+    [(0, 86.0),
+     (7, 73.0),
+     (6, 66.0),
+     (3, 45.0),
+     (1, 31.0),
+     (9, 28.0),
+     (2, 20.0),
+     (8, 16.0),
+     (5, 2.0)]
+
+
+
+Once the graph is created, we could do some something like this to walk through it.
+
+
+```python
+start = np.random.choice(g.nodes)
+path = [start]
+curr = start
+irt = []
+count = 0
+visited = set()
+prev = None
+
+for _ in range(0, 10):
+    if curr in visited:
+        count += 1
+    else:
+        irt.append((prev, curr, count))
+        count = 0
+    visited.add(curr)
+    expansion = g.expand(curr)
+    nodes = np.array([tup[0] for tup in expansion])
+    edges = np.array([tup[1] for tup in expansion])
+    prob = [edge/edges.sum() for edge in edges]
+    prev = curr
+    curr = np.random.choice(nodes, p=prob)
+    path.append(curr)
+    
+    
+print('Path through graph: {}'.format(path))
+print(irt)
+```
+
+    Path through graph: [8, 2, 8, 9, 0, 7, 9, 7, 4, 0, 8]
+    [(None, 8, 0), (8, 2, 0), (8, 9, 1), (9, 0, 0), (0, 7, 0), (7, 4, 2)]
+    
+
+## N. Testing <a name="testing"></a>
+Before pushing to master run 'python -m unittest discover' from the main directory to make sure nothing is broken!
