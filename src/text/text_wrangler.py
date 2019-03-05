@@ -21,12 +21,16 @@ class Corpus:
         self.vocab = set()
         self.filtered_vocab = set()
         self.stopwords = set()
+        self.nouns = set()
+        self.verbs = set()
+        self.adjectives = set()
 
         self._load_corpus(file_path)
         self._prepare_corpus(self.raw_file_string)
         self._find_unique_vocab(self.sentence_matrix)
         self._initialize_stopwords()
         self._create_filtered_vocab()
+        self._tag_and_store()
 
     def _load_corpus(self, file_path):
         with open(file_path, 'r', encoding="utf-8") as file:
@@ -57,3 +61,9 @@ class Corpus:
         self.filtered_vocab = set(
             wd for wd in self.vocab if wd not in self.stopwords
         )
+
+    def _tag_and_store(self):
+        tagged = nltk.pos_tag(self.vocab)
+        self.nouns = set(pair[0] for pair in tagged if "NN" in pair[1])
+        self.verbs = set(pair[0] for pair in tagged if "VB" in pair[1])
+        self.adjectives = set(pair[0] for pair in tagged if "JJ" in pair[1])
