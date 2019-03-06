@@ -16,7 +16,7 @@ class SemanticNetwork:
         self._init_graph()
 
     def update(self, em_proportion=0.1, g_proportion=0.1, include_set=None, stop_set=set(), thresh=0.7, verbose=False):
-        if include_set is None: include_set = self.graph.nodes
+        if include_set is None: include_set = set(self.aligned_keys)
 
         em_subset = np.array(
             [idx for idx in _select_subset(
