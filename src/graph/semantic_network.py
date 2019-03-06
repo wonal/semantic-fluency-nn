@@ -64,6 +64,11 @@ class SemanticNetwork:
         self._update(em_subset, g_subset, thresh, verbose)
 
     def _update(self, em_subset, g_subset, thresh, verbose=False):
+        if em_subset.size == 0 or g_subset.size == 0:
+            if verbose:
+                print("Nothing updated")
+            return
+
         em_vectors = self.embedding_matrix[em_subset, ]
         g_vectors = self.embedding_matrix[g_subset, ]
         cos_sims = cosine_similarity(em_vectors, g_vectors)
