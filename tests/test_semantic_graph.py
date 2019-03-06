@@ -7,17 +7,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 class SemanticGraphTests(unittest.TestCase):
     def setUp(self):
         np.random.seed(8)
-        self.vectors = np.array([
-            np.arange(0, 3),
-            np.arange(3, 6),
-            np.arange(6, 9),
-            np.arange(9, 12),
-            np.arange(12, 15),
-            np.arange(15, 18),
-            np.arange(21, 24),
-            np.arange(24, 27),
-            np.arange(27, 30),
-        ])
+        self.vectors = np.array([[np.random.randint(1000) for i in range(100)] for j in range(100)])
         self.keys = ['key{:05d}'.format(i) for i in range(len(self.vectors))]
         self.network = SemanticNetwork(embeddings=self.vectors,
                                        aligned_keys=self.keys)
@@ -68,7 +58,6 @@ class SemanticGraphTests(unittest.TestCase):
         actual = self.curr_adj_mat_copy
         self.assertTrue((expected == actual).all())
 
-
     def test_update_with_empty_include_set(self):
         expected = self.curr_adj_mat_copy
         self.network.update(em_proportion=1,
@@ -80,12 +69,13 @@ class SemanticGraphTests(unittest.TestCase):
     def test_update_cos_sim_correct(self):
         expected = self.curr_adj_mat_copy
         indices_to_change = range(len(self.vectors))
-        cos_sim = [x[0][0] for x in [cosine_similarity([self.vectors[i]], [self.vectors[j]]) for i in indices_to_change for j in indices_to_change if i != j]]
+        thresh = 0.8
+        cos_sim = [x[0][0] for x in [cosine_similarity([self.vectors[i]], [self.vectors[j]]) for i in indices_to_change for j in indices_to_change if i != j] if x[0][0] >= thresh]
         self.network.update(em_proportion=1,
                             g_proportion=1,
+                            thresh=thresh,
                             include_set=set([self.keys[i] for i in indices_to_change]))
         actual = self.curr_adj_mat_copy
         changed_indx = np.where(expected != actual)
         self.assertTrue(np.allclose(cos_sim, self.network.graph.adjacency_matrix[changed_indx]))
-
 
