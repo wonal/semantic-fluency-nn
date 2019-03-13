@@ -21,11 +21,17 @@ class SimulatedAnnealer:
         if len(self._graph.nodes) < 1:
             raise ValueError('You must insert.')
         if not self.start:
-            self.start = np.random.choice(self._graph.nodes)
-            while not self._graph.expand(self.start):
-                self.start = np.random.choice(self._graph.nodes)
+            self.start = self._select_random_node()
         current = (self.start, THRESH)
         return self._begin(current, count)
+
+    def _select_random_node(self):
+        visited = set()
+        node = np.random.choice(self._graph.nodes)
+        while not self._graph.expand(node) and len(visited) != len(self._graph.nodes):
+            node = np.random.choice(self._graph.nodes)
+            visited.add(node)
+        return node
 
     def _begin(self, current_state, n):
         path = [current_state[0]]
