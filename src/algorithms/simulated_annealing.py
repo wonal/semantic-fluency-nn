@@ -12,8 +12,7 @@ class SimulatedAnnealer:
             raise ValueError('Temperature must be greater than zero.')
         if start:
             self.start = start
-        else:
-            self.start = None
+        self.start = None
         self._graph = graph
         self._temperature = initial_temp
         self._initial_t = initial_temp
@@ -32,7 +31,7 @@ class SimulatedAnnealer:
         path = [current_state[0]]
         for i in range(n):
             neighbors = self._graph.expand(current_state[0])
-            if not neighbors:
+            if not neighbors and self._temperature <= 0:
                 break
             next_state = neighbors[np.random.choice(len(neighbors))]
             delta_state = next_state[1] - current_state[1]
