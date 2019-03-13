@@ -17,7 +17,7 @@ class SimulatedAnnealer:
         self._temperature = initial_temp
         self._initial_t = initial_temp
 
-    def run(self, count = 1):
+    def run(self, count=1):
         if len(self._graph.nodes) < 1:
             raise ValueError('You must insert.')
         if not self.start:
@@ -35,24 +35,22 @@ class SimulatedAnnealer:
 
     def _begin(self, current_state, n):
         path = [current_state[0]]
-        for i in range(n):
+        for i in range(1, n):
             neighbors = self._graph.expand(current_state[0])
             if not neighbors and self._temperature <= 0:
                 break
             next_state = neighbors[np.random.choice(len(neighbors))]
             delta_state = next_state[1] - current_state[1]
-            if delta_state > 0:
-                current_state = self._update(next_state, path)
-            else:
-                next_state = self._select_with_p(delta_state, next_state)
-                if next_state:
-                    current_state = self._update(next_state, path)
-            self._temperature = self._cooldown(i+1)
+            if delta_state < 0:
+                next_state = self._select_with_p(delta_state, next_state, current_state)
+            current_state = self._update(next_state, path)
+            self._temperature = self._cooldown(i)
         return path
 
-    def _select_with_p(self, delta_state, next_state):
+    def _select_with_p(self, delta_state, successor, current):
         e_value = math.exp(delta_state/self._temperature)
-        return np.random.choice([next_state, None], p=[e_value, 1-e_value])
+        nodes = [successor, current]
+        return nodes[np.random.choice(len(nodes), p=[e_value, 1-e_value])]
 
     def _cooldown(self, i):
         return self._initial_t*(ALPHA**i)

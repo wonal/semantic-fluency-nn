@@ -73,8 +73,7 @@ path
     'sweetheart', 
     'talke', 
     'thatch', 
-    'worshipp', 
-    'mortall']
+    'worshipp']
 
 
 
@@ -98,9 +97,10 @@ path
     'interpreter', 
     'turne', 
     'drowns', 
-    'damnation', 
-    'beautify']
+    'damnation']
 
-If the output path only consists of the starting node, that means the starting node has no other connections. 
+The walker will output a path of length `count`.  The exceptions are if the temperature drops below zero or if a node reached has no other connections. 
+
+If the output path only consists of the starting node, that means the starting node had no other connections. 
 
     ['tybalt']
