@@ -8,6 +8,7 @@ class UndirectedGraph:
         if initial_dim < 1:
             raise ValueError('Initial dimensions must be 1 or more')
         self._nodes = {}
+        self._i_to_node = {}
         self._curr = 0
         self._dim = initial_dim
         self._mult_factor = mult_factor
@@ -53,6 +54,7 @@ class UndirectedGraph:
     def _add_node(self, node):
         if node not in self._nodes.keys():
             self._nodes[node] = self._curr
+            self._i_to_node[self._curr] = node
             self._curr += 1
 
         if self._curr >= self._dim:
