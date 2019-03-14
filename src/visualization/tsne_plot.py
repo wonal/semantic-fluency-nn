@@ -1,6 +1,3 @@
-from gensim.models import Word2Vec
-from nltk import sent_tokenize, RegexpTokenizer, WordNetLemmatizer
-
 from sklearn.manifold import TSNE  # imports t-SNE to visualize embeddings
 import matplotlib.pyplot as plt  # allows for plotting
 from mpl_toolkits.mplot3d import Axes3D  # allows for 3D plotting
@@ -11,8 +8,6 @@ from os.path import exists  # check that path exists
 from os import mkdir, getcwd  # directory operations
 from shutil import rmtree  # remove specific directory contents
 import constants as C  # import constants
-
-from datetime import datetime  # measure time for plotting to complete
 
 
 class TsnePlot:
