@@ -214,9 +214,9 @@ class TsnePlot:
         Saves plot to specified directory.
         :param title: title of plot
         """
-        path = C.GRAPH_DIR
+        path = C.IMAGE_DIR
 
-        if C.DELETE_GRAPHS:
+        if C.DELETE_IMAGES:
             # clear directory if specified by function call
             if exists(path):
                 rmtree(path)
