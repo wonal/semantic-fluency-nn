@@ -5,7 +5,7 @@ TEST = False        # False means testing settings are off, True means testing s
 REDUCED_SIZE = 100  # reduced number of embeddings that are used to generate graphs
 
 # Plot Parameters
-RESTRICT_3D_TEXT = 700  # Restrict the number of annotations in 3D plot (computationally intensive)
+RESTRICT_3D_TEXT = 300  # Restrict the number of annotations in 3D plot (computationally intensive)
 TOP_N = 100             # Total similar words grabbed for each key in the cluster graph
 
 # File/Directory Settings
