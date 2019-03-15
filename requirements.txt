@@ -1,4 +1,9 @@
-nltk
-numpy
-sklearn
-scipy
+gensim==3.7.1
+kiwisolver==1.0.1
+matplotlib==3.0.3
+nltk==3.4
+numpy==1.16.2
+scikit-learn==0.20.3
+scipy==1.2.1
+sklearn==0.0
+constants
