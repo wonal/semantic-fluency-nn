@@ -5,8 +5,8 @@ RESTRICT_3D_TEXT = 250  # Restrict the number of annotations in 3D plot (computa
 TOP_N = 100             # Total similar words grabbed for each key in the cluster graph
 
 # File/Directory Settings
-IMAGES_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images
-DELETE_IMAGES = False                         # True clears all images, False leaves existing images
+GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images
+DELETE_GRAPHS = False                         # True clears all images, False leaves existing images
 
 # Corpus name and keys for cluster plot
 CLUSTER_KEYS = ['cat', 'sun', 'virtue', 'happy', 'sleeping', 'apple',
@@ -22,4 +22,4 @@ C_ETA = 350
 DIM3_PERPLEXITY = 10
 DIM3_COMPONENTS = 3
 DIM3_ITER = 2400
-DIM3_ETA = 350
+DIM3_ETA = 400

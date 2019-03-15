@@ -25,8 +25,16 @@ def prototype():
             model.train(clean_corpus.sentence_matrix, total_examples=len(clean_corpus.sentence_matrix),
                         epochs=1, compute_loss=True)
 
-        # Setup plotting data by processing vectors
         plot = TsnePlot()
+
+        # Create Cluster Plot
+        words, clusters = plot.similarity_clusters(model.wv, C.CLUSTER_KEYS)
+        reduced_clusters = plot.reduce_clusters(clusters)
+        img_title = plot.save_title(save_name[name], C.C_PERPLEXITY, C.C_COMPONENTS, C.C_ITER, C.C_ETA, '_top ' + str(C.TOP_N))
+        plot_title = corpus_names[name] + ': Word Embeddings (Top ' + str(C.TOP_N) + ' Most Similar)'
+        plot.visualize_clusters(reduced_clusters, words, C.CLUSTER_KEYS, plot_title, img_title)
+
+        # Process data for full embedding plots
         words, tokens = plot.process_vectors(model.wv)
 
         # Generate 2D Embeddings Plot
@@ -41,13 +49,7 @@ def prototype():
         plot_title = corpus_names[name] + ': 3-Dimensional Word Embeddings'
         plot.visualize_embeddings_3D(reduced_model_3D, words, plot_title, img_title, name)
 
-        # Create Cluster Plot
-        words, clusters = plot.similarity_clusters(model.wv, C.CLUSTER_KEYS)
-        reduced_clusters = plot.reduce_clusters(clusters)
-        img_title = plot.save_title(save_name[name], C.C_PERPLEXITY, C.C_COMPONENTS, C.C_ITER, '_top ' + str(C.TOP_N))
-        plot_title = corpus_names[name] + ': Word Embeddings (Top ' + str(C.TOP_N) + ' Most Similar)'
-        plot.visualize_clusters(reduced_clusters, words, C.CLUSTER_KEYS, plot_title, img_title)
-
+        # Iterate to next corpus
         name += 1
 
 

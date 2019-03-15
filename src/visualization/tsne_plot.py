@@ -9,7 +9,6 @@ from os import mkdir, getcwd  # directory operations
 from shutil import rmtree  # remove specific directory contents
 import constants as C # constants
 
-
 class TsnePlot:
 
     @staticmethod
@@ -214,9 +213,9 @@ class TsnePlot:
         Saves plot to specified directory.
         :param title: title of plot
         """
-        path = C.IMAGE_DIR
+        path = C.GRAPH_DIR
 
-        if C.DELETE_IMAGES:
+        if C.DELETE_GRAPHS:
             # clear directory if specified by function call
             if exists(path):
                 rmtree(path)
