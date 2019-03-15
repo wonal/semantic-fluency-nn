@@ -7,11 +7,10 @@ import numpy as np  # imports numpy for matrix operations
 from os.path import exists  # check that path exists
 from os import mkdir, getcwd  # directory operations
 from shutil import rmtree  # remove specific directory contents
-
 import constants as C # constants
 
 
-class TsnePlot():
+class TsnePlot:
 
     def reduce_clusters(self, clusters: [[int]]) -> [[int]]:
         """
@@ -122,7 +121,7 @@ class TsnePlot():
         :param labels: word labels associated with each xy data point
         :param plot_title: plot title
         :param img_title: title for saved image
-        note: this implementation was used as an intial guide for 3D plotting
+        note: this implementation was used as an initial guide for 3D plotting
         https://towardsdatascience.com/google-news-and-leo-tolstoy-
         visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d
         """
@@ -149,14 +148,13 @@ class TsnePlot():
     def visualize_embeddings_2D(self, embeddings: [[int, int]], labels: [str], plot_title: str, img_title: str):
         """
         Plots the parameterized data into a visual plot
-        :param embeddings: the x and y datapoints for the embeddings
+        :param embeddings: the x and y data points for the embeddings
         :param labels: word labels associated with each xy data point
         :param plot_title: plot title
         :param img_title: title for saved image
         """
         x, y = embeddings[:, 0], embeddings[:, 1]
         total = len(x)
-        x_min, x_max = min(x) - 10, max(x) + 10
 
         plt.figure(figsize=(16, 9))
         fig, ax = plt.subplots()
@@ -175,27 +173,15 @@ class TsnePlot():
         self.save_plot(img_title)
         plt.show()
 
-    def save_title(self, perplexity: int, components: int, iterations: int, learning_rate: int, extra: str = ''):
-        """
-        Returns string title for image to be saved with parameter details
-        :param perplexity: hyperparameter detailing nearest neighbors
-        :param components: reduced dimensions
-        :param iterations: total itereations
-        :param learning_rate: the step rate for learning
-        :param extra: any extra details in string type
-        :return: the title for saving the image
-        """
-        return 'tSNE2D_perplexity' + str(perplexity) + \
-               '_components' + str(components) + \
-               '_iter' + str(iterations) + \
-               '_eta' + str(learning_rate) + extra
-
     def similarity_clusters(self, word_vectors, cluster_keys: [str]) -> ([str], [[int]]):
         """
         Provide specific cluster keys around which to find similarity clusters
         :param word_vectors: vectors generated from word2vec
         :param cluster_keys: the key words for finding similar word clusters
         :return: the words and embedding clusters
+        note: this implementation was used as a guide for creating clusters
+        https://towardsdatascience.com/google-news-and-leo-tolstoy-
+        visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d
         """
         words, embedding_clusters = [], []
 
@@ -207,6 +193,22 @@ class TsnePlot():
             embedding_clusters.append(embeddings)
 
         return words, embedding_clusters
+
+    @staticmethod
+    def save_title(perplexity: int, components: int, iterations: int, learning_rate: int, extra: str = ''):
+        """
+        Returns string title for image to be saved with parameter details
+        :param perplexity: hyperparameter detailing nearest neighbors
+        :param components: reduced dimensions
+        :param iterations: total iterations
+        :param learning_rate: the step rate for learning
+        :param extra: any extra details in string type
+        :return: the title for saving the image
+        """
+        return 'tSNE2D_perplexity' + str(perplexity) + \
+               '_components' + str(components) + \
+               '_iter' + str(iterations) + \
+               '_eta' + str(learning_rate) + extra
 
     def save_plot(self, title: str):
         """
