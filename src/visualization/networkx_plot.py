@@ -2,9 +2,7 @@ import numpy as np
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-
-PATH_COLOR = 'green'
-NODE_COLOR = 'orange'
+import src.visualization.constants as C
 
 
 class NetworkxPlot:
@@ -43,11 +41,11 @@ class NetworkxPlot:
         if with_color_map:
             for node in graph.nodes:
                 if node in with_color_map:
-                    color_map.append(PATH_COLOR)
+                    color_map.append(C.PATH_COLOR)
                 else:
-                    color_map.append(NODE_COLOR)
+                    color_map.append(C.NODE_COLOR)
         else:
-            color_map = [NODE_COLOR]
+            color_map = [C.NODE_COLOR]
         nx.draw(graph, with_labels=True, node_size=1000, node_color=color_map, edge_color='black', alpha=0.6, width=1, font_weight='bold')
         plt.show()
 
