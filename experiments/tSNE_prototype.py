@@ -21,7 +21,7 @@ def prototype():
         model = Word2Vec(clean_corpus.sentence_matrix, size=120, window=5, min_count=2, workers=8, sg=1)
 
         # Train the model
-        for i in range(5):
+        for i in range(C.W2V_ETA):
             model.train(clean_corpus.sentence_matrix, total_examples=len(clean_corpus.sentence_matrix),
                         epochs=1, compute_loss=True)
 

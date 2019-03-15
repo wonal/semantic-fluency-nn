@@ -9,6 +9,7 @@ from os import mkdir, getcwd  # directory operations
 from shutil import rmtree  # remove specific directory contents
 import constants as C # constants
 
+
 class TsnePlot:
 
     @staticmethod
