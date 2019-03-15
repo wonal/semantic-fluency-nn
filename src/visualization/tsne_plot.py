@@ -118,7 +118,7 @@ class TsnePlot:
         xs, ys, zs = embeddings[:, 0], embeddings[:, 1], embeddings[:, 2]
         total = len(xs)
 
-        color_schemes = [['#da81bd', '#d364b2'], ['#00b4be', '#00a3ac']]
+        color_schemes = [['#91d280', '#77b865'], ['#00b4be', '#00a3ac']]
 
         plt.figure(figsize=(16, 9))
         fig = plt.figure()

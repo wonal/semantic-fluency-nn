@@ -1,7 +1,7 @@
 from os import getcwd        # directory operations
 
 # Plot Parameters
-RESTRICT_3D_TEXT = 350  # Restrict the number of annotations in 3D plot (computationally intensive)
+RESTRICT_3D_TEXT = 250  # Restrict the number of annotations in 3D plot (computationally intensive)
 TOP_N = 100             # Total similar words grabbed for each key in the cluster graph
 
 # File/Directory Settings
