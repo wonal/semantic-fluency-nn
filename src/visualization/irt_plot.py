@@ -14,21 +14,24 @@ import src.visualization.constants as C
 class IRTPlot:
 
     def generate_plots(self, headers: [str], barplot_name: str, barplot_data: [int],
-                       facetplot_name: str, facetplot_data: [[int]]):
+                       fcplot_name: str, fcplot_data: [[int]]):
         """
         Generates barplot from provided parameters
         :param headers: labels for files and plots
         :param barplot_name: name for barplot
         :param barplot_data: barplot_data values
-        :param facetplot_name: name for facetplot
-        :param facetplot_data: data for facetplot
+        :param fcplot_name: name for facetplot
+        :param fcplot_data: data for facetplot
         """
+        # TODO: uncomment barplot calls
         self.export_data(barplot_name, headers, barplot_data)
-        self.barplot(barplot_name, x_label='Algorithms', y_label='Total IRT', img_title='Total IRTs')
-        self.export_multi_data(facetplot_name, headers, facetplot_data)
-        self.facetplot_lines(facetplot_name, facetplot_data, img_title='IRT')
+        title = 'Total IRTs (' + str(C.MAX_ITERATIONS) + ' Steps)'
 
-    def facetplot_lines(self, name: str, img_title: str):
+        self.barplot(barplot_name, y_label='Total IRT', img_title=title)
+        self.export_multi_data(fcplot_name, headers, fcplot_data)
+        self.fcplot(fcplot_name + '.csv', img_title='IRT Paths')
+
+    def fcplot(self, name: str, img_title: str):
         """
         Creates a facetplot
         :param name: name for files
@@ -36,28 +39,28 @@ class IRTPlot:
         """
         path = C.CSV_DIR
         sns.set(style='whitegrid')
-        sns.set_palette(sns.color_palette(C.BAR_COLORS))
-        df = pd.read_csv(path + name + '.csv')
-        ax = sns.barplot(data=df)
+        sns.set_palette(sns.color_palette('hls'))
+        df = pd.read_csv(path + name)
+        ax = sns.FacetGrid(df, col="algorithm", col_wrap=4, height=1.5)
         ax.set(title=img_title)
 
         self.save_plot(name)
         plt.show()
 
-    def barplot(self, name: str, x_label: str, y_label: str, img_title: str):
+    def barplot(self, name: str, y_label: str, img_title: str):
         """
         Create a barplot from the parameterized data
         :param name: name for files
-        :param x_label: x label's name
         :param y_label: y label's name
         :param img_title: title of saved file
         """
         path = C.CSV_DIR
+
         sns.set(style='whitegrid')
         sns.set_palette(sns.color_palette(C.BAR_COLORS))
         df = pd.read_csv(path + name + '.csv')
         ax = sns.barplot(data=df)
-        ax.set(xlabel=x_label, ylabel=y_label, title=img_title)
+        ax.set(ylabel=y_label, title=img_title)
 
         self.save_plot(name)
         plt.show()

@@ -2,6 +2,7 @@ from os import getcwd        # directory operations
 
 # Word2Vec Model Hyperparameters
 W2V_ETA = 1  # TODO set to 20 when not testing
+START_NODE = 'wand'
 
 # IRT Plot Settings
 MAX_ITERATIONS = 100     # maximum number of iterations for algorithms during IRT comparisons
