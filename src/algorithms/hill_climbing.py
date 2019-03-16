@@ -65,7 +65,7 @@ class HillClimber:
                 if edges[idx] > next_eval:
                     next_node = node
                     next_eval = edges[idx]
-            if cur_iter >= self.num_iter:
+            if cur_iter >= self.num_iter - 1:
                 return self.list
             else:
                 if next_eval == self.score:
