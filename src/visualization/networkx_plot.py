@@ -12,7 +12,7 @@ class NetworkxPlot:
         self.graph = network.graph
         self.index_to_key = network.index_to_key
 
-    def create_most_similar_pairs_graph(self, n, expanded=False):
+    def plot_most_similar_pairs(self, n, expanded=False):
         from_nodes, to_nodes = self._retrieve_n_largest(n)
         from_nodes = np.apply_along_axis(self._retrieve_word, 0, from_nodes)
         to_nodes = np.apply_along_axis(self._retrieve_word, 0, to_nodes)
@@ -68,7 +68,7 @@ class NetworkxPlot:
                 continue
         return from_list, to_list
 
-    def create_most_connected_graph(self, n):
+    def plot_most_connected(self, n):
         if n < 1 or n > len(self.graph.nodes):
             raise ValueError("n must be greater than zero and less than the number of nodes in the graph.")
         most_connected = self._retrieve_most_connected(n)
@@ -81,13 +81,13 @@ class NetworkxPlot:
         nodes = np.take(self.graph.nodes, indices)
         return nodes
 
-    def create_custom_graph(self, words):
+    def create_custom_plot(self, words):
         if not words:
             raise ValueError("Must enter in at least one word.")
         from_list, to_list = self._expand_edge_lists(words, np.array([]), have_edge_lists=False)
         self._plot_nodes(from_list, to_list, [])
 
-    def create_colored_path_graph(self, path):
+    def create_colored_path_plot(self, path):
         if len(path) < 2:
             raise ValueError("Path length must be at least 2")
         from_nodes = np.array(path[:-1])
