@@ -43,7 +43,7 @@ class HillClimber:
             self.curr = self._random_start()
         self.score = float('-Inf')
         self.explored = set()
-        self.list = []
+        self.list = [self.curr]
         self.num_iter = num_iter
         self.repeat = repeat
 
@@ -55,7 +55,6 @@ class HillClimber:
 
         while explore:
             self.explored.add(self.curr)
-            self.list.append(self.curr)
             nodes, edges = self._expand()
 
             next_eval = float('-Inf')
@@ -66,7 +65,7 @@ class HillClimber:
                 if edges[idx] > next_eval:
                     next_node = node
                     next_eval = edges[idx]
-            if cur_iter >= self.num_iter:
+            if cur_iter >= self.num_iter - 1:
                 return self.list
             else:
                 if next_eval == self.score:
