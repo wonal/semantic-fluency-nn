@@ -41,3 +41,5 @@ GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph im
 CSV_DIR = str(getcwd()) + '/csv/'       # path and directory for saving data to csv files
 DELETE_GRAPHS = False                   # True clears all images, False leaves existing images
 
+PATH_COLOR = 'green'
+NODE_COLOR = 'orange'
