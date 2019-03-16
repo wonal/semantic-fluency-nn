@@ -34,3 +34,7 @@ DIM3_PERPLEXITY = 10
 DIM3_COMPONENTS = 3
 DIM3_ITER = 2400
 DIM3_ETA = 400
+
+# Networkx Plot Coloring
+PATH_COLOR = 'green'
+NODE_COLOR = 'orange'
