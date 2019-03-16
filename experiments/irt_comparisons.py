@@ -28,10 +28,6 @@ def measure_algorithm_irts():
     The IRT of each algorithms resulting path is calculated and plotted
     """
 
-    start_node = C.START_NODE
-    irt_totals = [0, 0, 0]
-    sa_line, rw_line, hc_line = [], [], []
-
     # Clean corpus and run through Word2Vec
     corpus = ['shakespeare.txt', 'fairy_tales.txt']
     clean_corpus = Corpus('docs/' + corpus[1])
@@ -49,33 +45,60 @@ def measure_algorithm_irts():
                        stop_set=clean_corpus.stopwords, thresh=0.8, verbose=True)
 
     # Run comparison algorithms
-    sim_annealing = SimulatedAnnealer(network.graph, initial_temp=1000, start=start_node)
-    sa_path = sim_annealing.run(C.MAX_ITERATIONS)
-    sa_irts = IRT.calculate(sa_path)
-    print(f'iterate {C.MAX_ITERATIONS} times')
-    print(f'simulated annealing_IRTs: {sa_irts}')
+    repeat = True
+    times_repeated = 0
 
-    walker = RandomWalker(network.graph, start_node)
-    walker_path = walker.run(C.MAX_ITERATIONS)
-    walker_irts = IRT.calculate(walker_path)
-    print(f'random walker IRTs: {walker_irts}')
+    while repeat:
+        start_node = None
+        irt_totals = [0, 0, 0]
+        sa_line, rw_line, hc_line = [], [], []
 
-    climber = HillClimber(network.graph, start_node, C.MAX_ITERATIONS, repeat=0)
-    climber_path = climber.run()
-    climber_irts = IRT.calculate(climber_path)
-    print(f'hill climber IRTs: {climber_irts}')
+        if not C.RANDOM_NODE:
+            start_node = C.START_NODE
 
-    # Gather IRT data
-    for sa, walker, climber in zip(sa_irts, walker_irts, climber_irts):
-        sa_line.append(sa[2])
-        rw_line.append(walker[2])
-        hc_line.append(climber[2])
-    print(f'totals for (simulated annealing, random walker, hill climber): {irt_totals}')
+        sim_annealing = SimulatedAnnealer(network.graph, initial_temp=1000, start=start_node)
+        sa_path = sim_annealing.run(C.MAX_ITERATIONS)
+        sa_irts = IRT.calculate(sa_path)
+        print(f'iterate {C.MAX_ITERATIONS} times')
+        print(f'simulated annealing_IRTs: {sa_irts}')
+        if C.RANDOM_NODE:
+            start_node = sa_path[0]
+
+            if times_repeated > 0:
+                start_node = sim_annealing.valid_start_node()
+                times_repeated = 0
+
+        walker = RandomWalker(network.graph, start_node)
+        walker_path = walker.run(C.MAX_ITERATIONS)
+        walker_irts = IRT.calculate(walker_path)
+        print(f'random walker IRTs: {walker_irts}')
+
+        climber = HillClimber(network.graph, start_node, C.MAX_ITERATIONS, repeat=0)
+        climber_path = climber.run()
+        climber_irts = IRT.calculate(climber_path)
+        print(f'hill climber IRTs: {climber_irts}')
+
+        # Gather IRT data
+        for sa, walker, climber in zip(sa_irts, walker_irts, climber_irts):
+            sa_line.append(sa[2])
+            rw_line.append(walker[2])
+            hc_line.append(climber[2])
+
+        irt_totals = [np.sum(sa_line), np.sum(rw_line), np.sum(hc_line)]
+        print(f'totals for (simulated annealing, random walker, hill climber): {irt_totals}')
+
+        # make sure the data looks interesting by avoiding standalone start nodes
+        for t in irt_totals:
+            if not t:
+                repeat = True
+                times_repeated += 1
+                print(f'REPEATING')  # TODO delete
+                break
+            repeat = False
 
     # generate plots for IRT representation
     plot = IRTPlot()
     algorithms = ['Simulated Annealing', 'Random Walk', 'Hill Climbing']
-    irt_totals = [np.sum(sa_line), np.sum(rw_line), np.sum(hc_line)]
     plot.generate_plots(algorithms, 'total_irt', irt_totals,
                         'line_irt', [sa_line, rw_line, hc_line])
 
