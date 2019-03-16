@@ -1,14 +1,12 @@
 import numpy as np
 import math
-
-ALPHA = 0.95
-THRESH = 0.8
+import src.visualization.constants as C
 
 
 class SimulatedAnnealer:
 
     def __init__(self, graph, initial_temp=1000, start=None):
-        if initial_temp < 1:
+        if initial_temp <= 0:
             raise ValueError('Temperature must be greater than zero.')
         self.start = start
         self._graph = graph
@@ -20,7 +18,7 @@ class SimulatedAnnealer:
             raise ValueError('You must insert.')
         if not self.start:
             self.start = self._select_random_node()
-        current = (self.start, THRESH)
+        current = (self.start, C.SA_THRESH)
         return self._begin(current, count)
 
     def _select_random_node(self):
@@ -51,7 +49,7 @@ class SimulatedAnnealer:
         return nodes[np.random.choice(len(nodes), p=[e_value, 1-e_value])]
 
     def _cooldown(self, i):
-        return self._initial_t*(ALPHA**i)
+        return self._initial_t*(C.SA_ALPHA**i)
 
     @staticmethod
     def _update(new_current, path):
