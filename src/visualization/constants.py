@@ -2,11 +2,11 @@ from os import getcwd        # directory operations
 
 # Word2Vec Model Hyperparameters
 W2V_ETA = 1  # TODO set to 20 when not testing
-START_NODE = 'wand'
 
 # IRT Plot Settings
-MAX_ITERATIONS = 100     # maximum number of iterations for algorithms during IRT comparisons
-BAR_COLORS = ['#e57cb2', '#24b7f5', '#52c300']
+MAX_ITERATIONS = 200    # maximum number of iterations for algorithms during IRT comparisons
+IRT_COLORS = ['#e57cb2', '#24b7f5', '#52c300']
+TOTAL_TESTS = 4          # total number of times the various algorithms are run and graphs are generated
 
 # Networkx Plot Coloring
 PATH_COLOR = 'green'
@@ -39,7 +39,7 @@ SA_TEMP = 2000
 
 # File/Directory Settings
 GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images
-CSV_DIR = str(getcwd()) + '/csv/'       # path and directory for saving data to csv files
+TEST_DIR = str(getcwd()) + '/test_results/'       # path and directory for saving data to csv files
 DELETE_GRAPHS = False                   # True clears all images, False leaves existing images
 
 PATH_COLOR = 'green'
