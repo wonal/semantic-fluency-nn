@@ -3,17 +3,13 @@ from os import getcwd        # directory operations
 # Word2Vec Model Hyperparameters
 W2V_ETA = 1  # TODO set to 20 when not testing
 
-# Simulated Annealing Algorithm Settings
-SA_ALPHA = 0.95
-SA_THRESH = 0.8
-SA_TEMP = 2000
-
 # IRT Plot Settings
-MAX_ITERATIONS = 7     # maximum number of iterations for algorithms during IRT comparisons
+MAX_ITERATIONS = 100     # maximum number of iterations for algorithms during IRT comparisons
+BAR_COLORS = ['#e57cb2', '#24b7f5', '#52c300']
 
-# File/Directory Settings
-GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images
-DELETE_GRAPHS = False                   # True clears all images, False leaves existing images
+# Networkx Plot Coloring
+PATH_COLOR = 'green'
+NODE_COLOR = 'orange'
 
 # TSNE Plot Settings
 RESTRICT_3D_TEXT = 125   # Restrict the number of annotations in 3D plot (computationally intensive)
@@ -35,6 +31,13 @@ DIM3_COMPONENTS = 3
 DIM3_ITER = 2400
 DIM3_ETA = 400
 
-# Networkx Plot Coloring
-PATH_COLOR = 'green'
-NODE_COLOR = 'orange'
+# Simulated Annealing Algorithm Settings
+SA_ALPHA = 0.95
+SA_THRESH = 0.8
+SA_TEMP = 2000
+
+# File/Directory Settings
+GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images
+CSV_DIR = str(getcwd()) + '/csv/'       # path and directory for saving data to csv files
+DELETE_GRAPHS = False                   # True clears all images, False leaves existing images
+

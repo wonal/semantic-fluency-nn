@@ -1,15 +1,20 @@
+""" # TODO needed?
 import os
 os.chdir('..')
+"""
 
-import numpy as np
-from src.graph.Graph import UndirectedGraph  # TODO remove if not used
+
+from src.text.text_wrangler import Corpus
+from gensim.models import Word2Vec
+from src.graph.semantic_network import SemanticNetwork
+
 from src.algorithms.simulated_annealing import SimulatedAnnealer
 from src.algorithms.random_walk import RandomWalker
 from src.algorithms.hill_climbing import HillClimber
 from src.algorithms.irt import IRT
-from src.graph.semantic_network import SemanticNetwork
-from src.text.text_wrangler import Corpus
-from gensim.models import Word2Vec
+
+from src.visualization.irt_plot import IRTPlot
+import numpy as np
 import src.visualization.constants as C
 
 
@@ -24,17 +29,16 @@ def measure_algorithm_irts():
     """
 
     irt_totals = [0, 0, 0]
+    sa_line, rw_line, hc_line = [], [], []
 
-    print(f'cleaning corpus...')
     corpus = ['shakespeare.txt', 'fairy_tales.txt']
     clean_corpus = Corpus('docs/' + corpus[1])
-    print(f'passing through W2V...')
+
     model = Word2Vec(clean_corpus.sentence_matrix, size=120,
                      window=5, min_count=5, workers=8, sg=1)
-    print(f'semantic network...')
+
     network = SemanticNetwork(embeddings=model.wv.vectors, aligned_keys=model.wv.index2word)
 
-    print(f'training model...')
     for i in range(C.W2V_ETA):
         model.train(clean_corpus.sentence_matrix, total_examples=len(clean_corpus.sentence_matrix),
                     epochs=1, compute_loss=True)
@@ -44,35 +48,41 @@ def measure_algorithm_irts():
     print(f'iterate {C.MAX_ITERATIONS} times')
     print(f'\nSimulated Annealing...')
     sim_annealing = SimulatedAnnealer(network.graph)
-    path = sim_annealing.run(C.MAX_ITERATIONS)
-    print(f'simulated annealing path: {path}')
+    sa_path = sim_annealing.run(C.MAX_ITERATIONS)
+    print(f'simulated annealing path: {sa_path}')
+    sa_irts = IRT.calculate(sa_path)
+    print(f'simulated annealing_IRTs: {sa_irts}')
 
-    start_node = path[0]
+    start_node = sa_path[0]
     print(f'START NODE: {start_node}')
 
     print('\nRandom Walker...')
     walker = RandomWalker(network.graph, start_node)
-    path = walker.run(C.MAX_ITERATIONS)
-    print(f'random walker path: {path}')
+    walker_path = walker.run(C.MAX_ITERATIONS)
+    print(f'random walker path: {walker_path}')
+    walker_irts = IRT.calculate(walker_path)
+    print(f'random walker IRTs: {walker_irts}')
 
     print('\nHill Climbing...')
     climber = HillClimber(network.graph, start_node, C.MAX_ITERATIONS, 0)
-    path = climber.run()
-    print(f'random walker path: {path}')
+    climber_path = climber.run()
+    print(f'climber path: {climber_path}')
+    climber_irts = IRT.calculate(climber_path)
+    print(f'climber IRTs: {climber_irts}')
 
+    print(f'sample of SA IRTs: \n{sa_irts}')
+    for sa, walker, climber in zip(sa_irts, walker_irts, climber_irts):
+        sa_line.append(sa[2])
+        rw_line.append(walker[2])
+        hc_line.append(climber[2])
+    print(f'totals for (simulated annealing, random walker, hill climber): {irt_totals}')
+    irt_totals = [np.sum(sa_line), np.sum(rw_line), np.sum(hc_line)]
 
-    # TODO: implement IRT counts
-    """
-    print(f'calculating IRT')
-    irts = IRT.calculate(path)  # TODO: curious, would walker.calculate(path) work because it's a @classmethod?
-    print(f'irts: {irts}')
-
-    for irt in irts:
-        irt_totals += irt[2]   # TODO adjust so that each index of irt_totals represents a different algorithms results
-    print(f'total for random walk: {irt_totals}')
-    """
+    algorithms = ['Simulated Annealing', 'Random Walk', 'Hill Climbing']
+    plot = IRTPlot()
+    plot.generate_plots(algorithms, 'total_irt', irt_totals,
+                        'line_irt', [sa_line, rw_line, hc_line])
 
 
 if __name__ == '__main__':
-    np.random.seed(1)   # TODO: probably not needed unless testing
     measure_algorithm_irts()
