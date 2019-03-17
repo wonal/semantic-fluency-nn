@@ -68,18 +68,14 @@ def measure_algorithm_irts():
 
         irt_totals = [np.sum(sa_line), np.sum(rw_line), np.sum(hc_line)]
         print(f'\nTOTALS for (simulated annealing, random walker, hill climber): {irt_totals}')
-        print(f'\nAVERAGE IRTs:\n'
-              f'simulated annealing: {np.mean(sa_line)}\n'
-              f'random walker: {np.mean(rw_line)}\n'
-              f'hill climber: {np.mean(hc_line)}')
 
         # generate plots for IRT representation
         plot = IRTPlot()
         algorithms = ['Simulated Annealing', 'Random Walk', 'Hill Climbing']
         paths = [sa_path, walker_path, climber_path]
-        plot.generate_plots(algorithms, 'total_irt' + str(test_run), irt_totals,
-                            'algo_paths', paths,
-                            'line_irt' + str(test_run), [sa_line, rw_line, hc_line])
+        plot.generate_plots(algorithms,  str(test_run) + 'total_irt', irt_totals,
+                            str(test_run) + 'algo_paths', paths,
+                            str(test_run) + 'line_irt', [sa_line, rw_line, hc_line])
 
 
 if __name__ == '__main__':
