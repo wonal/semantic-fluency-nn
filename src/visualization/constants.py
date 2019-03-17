@@ -1,7 +1,7 @@
 from os import getcwd        # directory operations
 
 # Word2Vec Model Hyperparameters
-W2V_ETA = 20  # TODO set to 20 when not testing
+W2V_ETA = 20 # TODO set to 20 when not testing
 
 # Simulated Annealing Algorithm Settings
 SA_ALPHA = 0.95

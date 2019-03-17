@@ -15,15 +15,18 @@ import src.visualization.constants as C
 class IRTPlot:
 
     def generate_plots(self, headers: [str], barplot_name: str, barplot_data: [int],
-                       lineplot_name: str, multi_data: [[int]]):
+                       path_filename: [str], paths: [[str]], lineplot_name: str, multi_data: [[int]]):
         """
-        Generates barplot from provided parameters
+        Generates plots from provided parameters
         :param headers: labels for files and plots
         :param barplot_name: name for barplot
         :param barplot_data: barplot_data values
-        :param lineplot_name: name for facetplot
-        :param multi_data: data for facetplot
+        :param path_filename: filename for path data
+        :param paths: actual paths from algorithms
+        :param lineplot_name: name for lineplot
+        :param multi_data: data for lineplot
         """
+        self.export_data(path_filename, headers, paths, text=True)
         self.export_data(barplot_name, headers, barplot_data)
         title = 'Total IRTs (' + str(C.MAX_ITERATIONS) + ' Steps)'
         self.barplot(barplot_name, y_label='Total IRT', img_title=title)
@@ -39,10 +42,6 @@ class IRTPlot:
         """
         total_lines = len(data)
         x = np.arange(0, len(data[0]))
-
-        print(f'sim anneal data length: {len(data[0])}\n'
-              f'random walker data length: {len(data[1])}\n'
-              f'hill climber data length: {len(data[2])}')
 
         for line in range(total_lines):
             ax = sns.lineplot(x=x, y=data[line], color=C.IRT_COLORS[line], label=headers[line])
@@ -71,16 +70,21 @@ class IRTPlot:
         plt.show()
 
     @staticmethod
-    def export_data(filename: str, headers: [str], data: int):
+    def export_data(filename: str, headers: [str], data: int, text: bool=False):
         """
         Creates CSVs from the data for later use with pandas dataframes
         :param filename: the csv filename
         :param headers: the data headers
         :param data: the data to save
+        :param text: True if data is composed of strings, False otherwise
         """
         path = C.TEST_DIR
         with open(path + filename + '.csv', 'w', newline='') as f:
-            wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE)
+            wr = None
+            if not text:
+                wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE)
+            else:
+                wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE, escapechar='\\')
             wr.writerow(headers)
             wr.writerow(data)
 

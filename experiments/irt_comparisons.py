@@ -46,7 +46,6 @@ def measure_algorithm_irts():
         sim_annealing = SimulatedAnnealer(network.graph, initial_temp=C.SA_TEMP, start=start_node)
         sa_path = sim_annealing.run(C.MAX_ITERATIONS)
         sa_irts = IRT.calculate(sa_path)
-        print(f'iterate {C.MAX_ITERATIONS} times')
         print(f'simulated annealing_IRTs: {sa_irts}')
         start_node = sa_path[0]
 
@@ -68,12 +67,18 @@ def measure_algorithm_irts():
             hc_line.append(climber[2])
 
         irt_totals = [np.sum(sa_line), np.sum(rw_line), np.sum(hc_line)]
-        print(f'totals for (simulated annealing, random walker, hill climber): {irt_totals}')
+        print(f'\nTOTALS for (simulated annealing, random walker, hill climber): {irt_totals}')
+        print(f'\nAVERAGE IRTs:\n'
+              f'simulated annealing: {np.mean(sa_line)}\n'
+              f'random walker: {np.mean(rw_line)}\n'
+              f'hill climber: {np.mean(hc_line)}')
 
         # generate plots for IRT representation
         plot = IRTPlot()
         algorithms = ['Simulated Annealing', 'Random Walk', 'Hill Climbing']
+        paths = [sa_path, walker_path, climber_path]
         plot.generate_plots(algorithms, 'total_irt' + str(test_run), irt_totals,
+                            'algo_paths', paths,
                             'line_irt' + str(test_run), [sa_line, rw_line, hc_line])
 
 
