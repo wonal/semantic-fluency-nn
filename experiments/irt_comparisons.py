@@ -43,7 +43,7 @@ def measure_algorithm_irts():
 
         start_node = None
 
-        sim_annealing = SimulatedAnnealer(network.graph, initial_temp=C.SA_TEMP, start=start_node)
+        sim_annealing = SimulatedAnnealer(network.graph, initial_temp=C.SA_TEMP, start=start_node, reverse=C.WARMUP)
         sa_path = sim_annealing.run(C.MAX_ITERATIONS)
         sa_irts = IRT.calculate(sa_path)
         print(f'iterate {C.MAX_ITERATIONS} times')

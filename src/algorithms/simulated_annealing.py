@@ -5,13 +5,14 @@ import src.visualization.constants as C
 
 class SimulatedAnnealer:
 
-    def __init__(self, graph, initial_temp=1000, start=None):
+    def __init__(self, graph, initial_temp=1000, start=None, reverse=False):
         if initial_temp <= 0:
             raise ValueError('Temperature must be greater than zero.')
         self.start = start
         self._graph = graph
         self._temperature = initial_temp
         self._initial_t = initial_temp
+        self._reverse = reverse
 
     def run(self, count=1):
         if len(self._graph.nodes) < 1:
@@ -43,7 +44,10 @@ class SimulatedAnnealer:
             if delta_state < 0:
                 next_state = self._select_with_p(delta_state, next_state, current_state)
             current_state = self._update(next_state, path)
-            self._temperature = self._cooldown(i)
+            if self._reverse:
+                self._temperature = self._warmup(i)
+            else:
+                self._temperature = self._cooldown(i)
         return path
 
     def _select_with_p(self, delta_state, successor, current):
@@ -53,6 +57,9 @@ class SimulatedAnnealer:
 
     def _cooldown(self, i):
         return self._initial_t*(C.SA_ALPHA**i)
+
+    def _warmup(self, i):
+        return self._initial_t*(C.SA_BETA**i)
 
     @staticmethod
     def _update(new_current, path):
