@@ -1,12 +1,20 @@
 from os import getcwd        # directory operations
 
 # Word2Vec Model Hyperparameters
-W2V_ETA = 1  # TODO set to 20 when not testing
+W2V_ETA = 20  # TODO set to 20 when not testing
+
+# Simulated Annealing Algorithm Settings
+SA_ALPHA = 0.95
+SA_THRESH = 0.8
+SA_TEMP = 1.5
+
+# Random Start Hill Climbing Settings
+HC_REPEAT = 0
 
 # IRT Plot Settings
 MAX_ITERATIONS = 200    # maximum number of iterations for algorithms during IRT comparisons
 IRT_COLORS = ['#e57cb2', '#24b7f5', '#52c300']
-TOTAL_TESTS = 4          # total number of times the various algorithms are run and graphs are generated
+TOTAL_TESTS = 1          # total number of times the various algorithms are run and graphs are generated
 
 # Networkx Plot Coloring
 PATH_COLOR = 'green'
@@ -31,11 +39,6 @@ DIM3_PERPLEXITY = 10
 DIM3_COMPONENTS = 3
 DIM3_ITER = 2400
 DIM3_ETA = 400
-
-# Simulated Annealing Algorithm Settings
-SA_ALPHA = 0.95
-SA_THRESH = 0.8
-SA_TEMP = 2000
 
 # File/Directory Settings
 GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images

@@ -24,12 +24,9 @@ class IRTPlot:
         :param lineplot_name: name for facetplot
         :param multi_data: data for facetplot
         """
-        # TODO: uncomment barplot calls
-        """
         self.export_data(barplot_name, headers, barplot_data)
         title = 'Total IRTs (' + str(C.MAX_ITERATIONS) + ' Steps)'
         self.barplot(barplot_name, y_label='Total IRT', img_title=title)
-        """
         self.lineplot(lineplot_name, headers, multi_data, img_title='IRT Paths')
 
     def lineplot(self, name: str, headers: [str], data: [[int]], img_title: str):
