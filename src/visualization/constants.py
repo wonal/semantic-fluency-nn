@@ -6,7 +6,7 @@ W2V_ETA = 20
 # Simulated Annealing Algorithm Settings
 SA_ALPHA = 0.95
 SA_THRESH = 0.8
-SA_TEMP = 1.5
+SA_TEMP = 3
 
 # Random Start Hill Climbing Settings
 HC_REPEAT = 0
@@ -14,7 +14,7 @@ HC_REPEAT = 0
 # IRT Plot Settings
 MAX_ITERATIONS = 200   # maximum number of iterations for algorithms during IRT comparisons
 IRT_COLORS = ['#e57cb2', '#24b7f5', '#52c300']
-TOTAL_TESTS = 1          # total number of times the various algorithms are run and graphs are generated
+TOTAL_TESTS = 20          # total number of times the various algorithms are run and graphs are generated
 
 # Networkx Plot Coloring
 PATH_COLOR = 'green'
