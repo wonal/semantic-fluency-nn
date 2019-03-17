@@ -15,18 +15,15 @@ import src.visualization.constants as C
 class IRTPlot:
 
     def generate_plots(self, headers: [str], barplot_name: str, barplot_data: [int],
-                       path_filename: [str], paths: [[str]], lineplot_name: str, multi_data: [[int]]):
+                       lineplot_name: str, multi_data: [[int]]):
         """
         Generates plots from provided parameters
         :param headers: labels for files and plots
         :param barplot_name: name for barplot
         :param barplot_data: barplot_data values
-        :param path_filename: filename for path data
-        :param paths: actual paths from algorithms
         :param lineplot_name: name for lineplot
         :param multi_data: data for lineplot
         """
-        self.export_data(path_filename, headers, paths, text=True)
         self.export_data(barplot_name, headers, barplot_data)
         title = 'Total IRTs (' + str(C.MAX_ITERATIONS) + ' Steps)'
         self.barplot(barplot_name, y_label='Total IRT', img_title=title)
@@ -80,11 +77,7 @@ class IRTPlot:
         """
         path = C.TEST_DIR
         with open(path + filename + '.csv', 'w', newline='') as f:
-            wr = None
-            if not text:
-                wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE)
-            else:
-                wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE, escapechar='\\')
+            wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE)
             wr.writerow(headers)
             wr.writerow(data)
 

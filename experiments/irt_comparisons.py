@@ -72,9 +72,7 @@ def experiments():
         # generate plots for IRT representation
         plot = IRTPlot()
         algorithms = ['Simulated Annealing', 'Random Walk', 'Hill Climbing']
-        paths = [sa_path, walker_path, climber_path]
         plot.generate_plots(algorithms,  str(test_run) + 'total_irt', irt_totals,
-                            str(test_run) + 'algo_paths', paths,
                             str(test_run) + 'line_irt', [sa_line, rw_line, hc_line])
 
 
