@@ -12,7 +12,7 @@ import numpy as np
 import src.visualization.constants as C
 
 
-def measure_algorithm_irts():
+def experiments():
     """
     Runs the different algorithms using the same starting node and total 'steps':
     - random walk
@@ -79,4 +79,4 @@ def measure_algorithm_irts():
 
 
 if __name__ == '__main__':
-    measure_algorithm_irts()
+    experiments()
