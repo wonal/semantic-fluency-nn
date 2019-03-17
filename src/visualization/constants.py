@@ -4,11 +4,9 @@ from os import getcwd        # directory operations
 W2V_ETA = 20  # TODO set to 20 when not testing
 
 # Simulated Annealing Algorithm Settings
+SA_ALPHA = 0.95
 SA_THRESH = 0.8
-SA_TEMP = 10       # starting temperature
-SA_ALPHA = 0.95     # cool down alpha
-SA_BETA = 1.05      # warm-up beta
-WARMUP = True       # if True, reverses SA to warmup, if False, simulated annealing works as expected
+SA_TEMP = 1.5
 
 # Random Start Hill Climbing Settings
 HC_REPEAT = 0

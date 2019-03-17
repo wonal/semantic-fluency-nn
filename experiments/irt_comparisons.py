@@ -43,7 +43,7 @@ def measure_algorithm_irts():
 
         start_node = None
 
-        sim_annealing = SimulatedAnnealer(network.graph, initial_temp=C.SA_TEMP, start=start_node, reverse=C.WARMUP)
+        sim_annealing = SimulatedAnnealer(network.graph, initial_temp=C.SA_TEMP, start=start_node)
         sa_path = sim_annealing.run(C.MAX_ITERATIONS)
         sa_irts = IRT.calculate(sa_path)
         print(f'iterate {C.MAX_ITERATIONS} times')
@@ -55,7 +55,7 @@ def measure_algorithm_irts():
         walker_irts = IRT.calculate(walker_path)
         print(f'random walker IRTs: {walker_irts}')
 
-        climber = HillClimber(network.graph, start_node, C.MAX_ITERATIONS, 0)
+        climber = HillClimber(network.graph, start_node, C.MAX_ITERATIONS, C.HC_REPEAT)
         climber_path = climber.run()
         climber_irts = IRT.calculate(climber_path)
         print(f'hill climber IRTs: {climber_irts}')
