@@ -21,6 +21,9 @@ class SimulatedAnnealer:
         current = (self.start, C.SA_THRESH)
         return self._begin(current, count)
 
+    def valid_start_node(self):
+        return self._select_random_node()
+
     def _select_random_node(self):
         visited = set()
         node = np.random.choice(self._graph.nodes)
