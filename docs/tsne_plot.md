@@ -5,9 +5,9 @@
 3. [Corpus Preparation](#corpus)
 4. [Generate Plots Titled with Hyperparameter Details](#generate_plots)
 5. [Examples of tSNE Visualizations](#examples)
-   * [Example of 2-Dimensional t-SNE Plot](#2D)
-   * [Example of 3-Dimensional t-SNE Plot](#3D)
-   * [Example of t-SNE Cluster Plot](#cluster)
+   * [2-Dimensional t-SNE Plot](#2D)
+   * [3-Dimensional t-SNE Plot](#3D)
+   * [t-SNE Cluster Plot](#cluster)
 
 
 ## 1 Introduction  <a name="introduction"></a>
@@ -100,14 +100,14 @@ The 2-dimensional embeddings could be saved in the following format displaying w
 
 This will allow for hyperparmeter fine-tuning, which can result in drastically different results with t-SNE. The following examples all use the Shakespeare corpus to generate visualizations of the embeddings.
 
-##### Example of 2-Dimensional t-SNE Plot  <a name="2D"></a>
+##### 2-Dimensional t-SNE Plot  <a name="2D"></a>
 
 ![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450 "2D tSNE plot")
 
-##### Example of 3-Dimensional t-SNE Plot  <a name="3D"></a>
+##### 3-Dimensional t-SNE Plot  <a name="3D"></a>
 
 ![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400 "3D tSNE plot")
 
-##### Example of t-SNE Cluster Plot  <a name="cluster"></a>
+##### t-SNE Cluster Plot  <a name="cluster"></a>
 
-![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top 100 "tSNE cluster plot")
+![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100 "tSNE cluster plot")
