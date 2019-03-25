@@ -103,15 +103,15 @@ This will allow for hyperparmeter fine-tuning, which can result in drastically d
 
 ##### 2-Dimensional t-SNE Plot  <a name="2D"></a>
 
-![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450 "2D tSNE plot")
+![2D tSNE plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450 "2D tSNE plot")
 
 ##### 3-Dimensional t-SNE Plot  <a name="3D"></a>
 
-![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400 "3D tSNE plot")
+![3D tSNE plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400 "3D tSNE plot")
 
 ##### t-SNE Cluster Plot  <a name="cluster"></a>
 
-![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100 "tSNE cluster plot")
+![tSNE cluster plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100 "tSNE cluster plot")
 
 
 ### 6 Additional Resources  <a name="resources"></a>
