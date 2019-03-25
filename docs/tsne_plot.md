@@ -3,11 +3,12 @@
 1. [Introduction](#introduction)
 2. [Setup](#setup)
 3. [Corpus Preparation](#corpus)
-4. [Generate Plots Titled with Hyperparameter Details](#generate_plots)
+4. [Generate Plots](#generate_plots)
 5. [Examples of tSNE Visualizations](#examples)
    * [2-Dimensional t-SNE Plot](#2D)
    * [3-Dimensional t-SNE Plot](#3D)
    * [t-SNE Cluster Plot](#cluster)
+6. [Additional Resources](#resources)
 
 
 ## 1 Introduction  <a name="introduction"></a>
@@ -62,8 +63,8 @@ model.train(sentence_2d, total_examples=len(sentence_2d),
 ```
 
 
-### 4 Generate Plots Titled with Hyperparameter Details  <a name="generate_plots"></a>
-Note that the hyperparameters have been set as constants in the ```constants.py``` file.
+### 4 Generate Plots  <a name="generate_plots"></a>
+Note that the hyperparameters have been set as constants in the ```constants.py``` file. The following examples will title each plot specifying which plot is being generated. In addition, the plots will be saved with their hyperparameter details to allow for easier hyperparameter fine-tuning, which is recommended for the best visualizations.
 
 ```python
 plot = TsnePlot()
@@ -111,3 +112,11 @@ This will allow for hyperparmeter fine-tuning, which can result in drastically d
 ##### t-SNE Cluster Plot  <a name="cluster"></a>
 
 ![alt text](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100 "tSNE cluster plot")
+
+
+### 6 Additional Resources  <a name="resources"></a>
+These resources were used to further understand how to implement t-SNE, its restrictions and how to better visualize with hyperparameter fine-tuning.
+
+[How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
+[Google News and Leo Tolstoy: Visualizing Word2Vec Word Embeddings using t-SNE](https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d)
+[sklearn.manifold.TSNE module](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html)
