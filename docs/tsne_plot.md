@@ -111,8 +111,6 @@ This plot creates a 3-dimensional representation of the entirety of the Shakespe
 ## 6 Additional Resources  <a name="resources"></a>
 These resources were used to further understand how to implement t-SNE, its restrictions and how to better visualize with hyperparameter fine-tuning.
 
-[How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
-
-[Google News and Leo Tolstoy: Visualizing Word2Vec Word Embeddings using t-SNE](https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d)
-
-[sklearn.manifold.TSNE module](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html)
+[How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)  
+[Google News and Leo Tolstoy: Visualizing Word2Vec Word Embeddings using t-SNE](https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d)  
+[sklearn.manifold.TSNE module](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html)  
