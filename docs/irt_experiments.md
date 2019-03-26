@@ -159,8 +159,6 @@ Considering these results, we thought that the original research could afford mo
 
 
 ### 8 Resources  <a name="resources"></a>
-[1]<a name="cite1"></a> F. Miscevic, A. Nematzadeh and S. Stevenson, "Predicting and Explaining Human Semantic Search in a Cognitive Model," Nov. 29, 2017. [Online]. Available:  https://arxiv.org/pdf/1711.11125.pdf.
-
-[2] [Shakespeare Corpus](http://www.gutenberg.org/files/100/100-h/100-h.htm)
-
-[3] [Fairy Tale Corpus](https://www.gutenberg.org/files/19734/19734-h/19734-h.htm)
+[1]<a name="cite1"></a> F. Miscevic, A. Nematzadeh and S. Stevenson, "Predicting and Explaining Human Semantic Search in a Cognitive Model," Nov. 29, 2017. [Online]. Available:  https://arxiv.org/pdf/1711.11125.pdf.  
+[2] [Shakespeare Corpus](http://www.gutenberg.org/files/100/100-h/100-h.htm)  
+[3] [Fairy Tale Corpus](https://www.gutenberg.org/files/19734/19734-h/19734-h.htm)  
