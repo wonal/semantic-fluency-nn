@@ -91,13 +91,19 @@ This allows for more efficient hyperparmeter fine-tuning with the learning rate,
 
 ### t-SNE Cluster Plot  <a name="cluster"></a>
 
+This plot uses hardcoded keywords (shown in the legend) to find similar words and generate clusters based on their word similarity. Adding parameters to find words that are similar but do not share the same embedding values may increase the readability, so the clusters are more spread out.
+
 ![](/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot")
 
 ### 2-Dimensional t-SNE Plot  <a name="2D"></a>
 
+This plot creates a 2-dimensional representation of the entirety of the Shakespeare corpus.
+
 ![](/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450.png "2D tSNE plot")
 
 ### 3-Dimensional t-SNE Plot  <a name="3D"></a>
+
+This plot creates a 3-dimensional representation of the entirety of the Shakespeare corpus.
 
 ![](/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400.png "3D tSNE plot")
 
