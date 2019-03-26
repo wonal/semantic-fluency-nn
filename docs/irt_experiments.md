@@ -6,10 +6,10 @@
 4. [Run Algorithms](#algorithms)
 5. [Generate Plots](#generate_plots)
 6. [Experiments](#experiments)
-   * [**Simulated Annealing**](#sim_anneal): Temperature hyperparameter fine-tuned 
-   * [**Random Start/Restart Hill Climbing**](#hill_climb): Repeat parameter tested
-   * [**Visualizing Training Effects on Algorithm Performance**](#training)
-   * [**Multiple Test Runs**](#tests)
+   * [Simulated Annealing](#sim_anneal): Temperature hyperparameter fine-tuned 
+   * [Random Start/Restart Hill Climbing](#hill_climb): Repeat parameter tested
+   * [Visualizing Training Effects on Algorithm Performance](#training)
+   * [Multiple Test Runs](#tests)
 7. [Conclusion](#conclusion)
 8. [Resources](#resources)
 
