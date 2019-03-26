@@ -120,33 +120,33 @@ Various experiments were run to ensure that hyperparameters were well-tuned to b
 
 The temperature hyperparameter, T, was tested with the values 0.01, 1, 2, . . . , 500, 1000, 2000. For values in [5, 2000], the simulated annealing IRTs remained low throughout the algorithm's run. Lower values of [0.01, 3] resulted in a low IRT to start and a higher IRT towards the end of the algorithm's run, which better simulated human fluency. The hyperparameter was set to T=3 because lower values tended to have extreme spikes in IRT that were too long to realistically mimic human behavior. 
 
-![simulated annealing test](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/sa_line_irt0.png "Simulated Annealing IRTs")
+![](/docs/test_results/sa_line_irt0.png "Simulated Annealing IRTs")
 
 ##### Random Start/Restart Hill Climbing  <a name="hill_climb"></a>
 
 A repeat parameter was added to the random start/restart hill climbing algorithm that can mimic a human lingering on a word. This parameter was set to ```repeat = 1```, which resulted in an overal increase in IRT levels throughout the algorithm's run. These increases were too consistently high to realistically simulate human fluency, however, the hyperparameter could be modified to have a repeating effect at random, periodic stages, which could better simulate human fluency.
 
-![hill climbing test](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/hc_line_irt0.png "Hill Climbing IRTs")
+![](/docs/test_results/hc_line_irt0.png "Hill Climbing IRTs")
 
 ##### Visualizing Training Effects on Algorithm Performance  <a name="training"></a>
 
 Plots were taken of the algorithmic effects while the model and network were trained for 20 epochs. A pattern emerged that was reproduced in several trials where the simulated annealing begins with a very high IRT usually caused by an extreme spike towards the end of the algorithm's run. The total IRT tends to fall to approximately half its original values. The hill climbing and random walk remain very low, but around epoch 5 in training, the random start/restart hill climbing algorithm noticeably increases in total IRTs until it consistently remains at a similar level to the simulated annealing results. The random walk remained low throughout and did not simulate human behavior very well as its IRT levels remained low through the overall algorithm and had no consistent pattern that emerged during training.
 
-![Epoch 0](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/0total_irt.png "Training Epoch 0")
+![](/docs/test_results/0total_irt.png "Training Epoch 0")
 
-![Epoch 8](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/8total_irt.png "Training Epoch 8")
+![](/docs/test_results/8total_irt.png "Training Epoch 8")
 
-![Epoch 19](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/19total_irt.png "Training Epoch 19")
+![](/docs/test_results/19total_irt.png "Training Epoch 19")
 
 ##### Multiple Test Runs  <a name="tests"></a>
 
 After the hyperparameters were adjusted and patterns noted, twenty test runs were made to give a final comparison of the algorithms' results and decide which one best simulated human semantic fluency. Following are some random test results::
 
-![Test 1](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/test1_line_irt.png "Test 1")
+![](/docs/test_results/test1_line_irt.png "Test 1")
 
-![Test 7](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/test7_line_irt.png "Test 7")
+![](/docs/test_results/test7_line_irt.png "Test 7")
 
-![Test 12](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/test_results/test12_line_irt.png "Test 12")
+![](/docs/test_results/test12_line_irt.png "Test 12")
 
 
 ### 7 Conclusion  <a name="conclusion"></a>
@@ -160,5 +160,7 @@ Considering these results, we thought that the original research could afford mo
 
 ### 8 Resources  <a name="resources"></a>
 [1]<a name="cite1"></a> F. Miscevic, A. Nematzadeh and S. Stevenson, "Predicting and Explaining Human Semantic Search in a Cognitive Model," Nov. 29, 2017. [Online]. Available:  https://arxiv.org/pdf/1711.11125.pdf.
+
 [2] [Shakespeare Corpus](http://www.gutenberg.org/files/100/100-h/100-h.htm)
+
 [3] [Fairy Tale Corpus](https://www.gutenberg.org/files/19734/19734-h/19734-h.htm)
