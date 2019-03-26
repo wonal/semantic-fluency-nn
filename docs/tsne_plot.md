@@ -95,6 +95,8 @@ This allows for more efficient hyperparmeter fine-tuning with the learning rate,
 
 ![tSNE cluster plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot")
 
+![](docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot")
+
 ##### 2-Dimensional t-SNE Plot  <a name="2D"></a>
 
 <img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450.png" width="600">
