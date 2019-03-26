@@ -1,4 +1,4 @@
-# t-SNE Visualizations for Word Embeddings
+t-SNE Visualizations for Word Embeddings
 
 1. [Introduction](#introduction)
 2. [Setup](#setup)
@@ -90,6 +90,10 @@ The 2-dimensional embeddings could be saved in the following format displaying w
 This allows for more efficient hyperparmeter fine-tuning with the learning rate, perplexity, iterations and more. Adjusting these hyperparameter values can result in drastically different results with t-SNE. The following examples all use the Shakespeare corpus to generate visualizations of the embeddings.
 
 ##### t-SNE Cluster Plot  <a name="cluster"></a>
+
+(https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot")
+
+![tSNE cluster plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot"=100x)
 
 ![tSNE cluster plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot")
 
