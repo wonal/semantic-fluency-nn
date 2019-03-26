@@ -91,19 +91,19 @@ This allows for more efficient hyperparmeter fine-tuning with the learning rate,
 
 ##### t-SNE Cluster Plot  <a name="cluster"></a>
 
-<img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png" alt="tSNE cluster plot" width="500">
+<img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png" width="500">
 
 ![tSNE cluster plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450_top100.png "tSNE cluster plot")
 
 ##### 2-Dimensional t-SNE Plot  <a name="2D"></a>
 
-<img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450.png" alt="tSNE cluster plot" width="600">
+<img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450.png" width="600">
 
 ![2D tSNE plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE2D_perplexity5_components2_iter2400_eta450.png "2D tSNE plot")
 
 ##### 3-Dimensional t-SNE Plot  <a name="3D"></a>
 
-<img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400.png" alt="3D tSNE plot" width="400">
+<img src="https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400.png" width="400">
 
 ![3D tSNE plot](https://github.com/mkduer/semantic-fluency-nn/tree/master/docs/example_images/shakespeare_tSNE3D_perplexity10_components3_iter2400_eta400.png "3D tSNE plot")
 
@@ -112,5 +112,7 @@ This allows for more efficient hyperparmeter fine-tuning with the learning rate,
 These resources were used to further understand how to implement t-SNE, its restrictions and how to better visualize with hyperparameter fine-tuning.
 
 [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
+
 [Google News and Leo Tolstoy: Visualizing Word2Vec Word Embeddings using t-SNE](https://towardsdatascience.com/google-news-and-leo-tolstoy-visualizing-word2vec-word-embeddings-with-t-sne-11558d8bd4d)
+
 [sklearn.manifold.TSNE module](https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html)
