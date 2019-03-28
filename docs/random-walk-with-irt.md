@@ -29,7 +29,7 @@ np.random.seed(1)
 
 
 ```python
-shakespeare = Corpus("docs/shakespeare.txt")
+shakespeare = Corpus("data/input/shakespeare.txt")
 model = Word2Vec(shakespeare.sentence_matrix, size = 120,
                  window = 5, min_count=5, workers=8, sg=1)
 network = SemanticNetwork(embeddings=model.wv.vectors, aligned_keys=model.wv.index2word)
