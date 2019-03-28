@@ -7,7 +7,7 @@ import numpy as np  # imports numpy for matrix operations
 from os.path import exists  # check that path exists
 from os import mkdir  # directory operations
 from shutil import rmtree  # remove specific directory contents
-import constants as C  # constants
+import src.visualization.constants as C  # constants
 
 
 class TsnePlot:
