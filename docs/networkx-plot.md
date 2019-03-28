@@ -105,7 +105,7 @@ nx_plot.create_colored_path_plot(path)
 
 No plots will be shown for paths of length zero or one. 
 
-##### Plot titles
+### Plot titles
 
 Custom plot titles can be given for any of the plots:
 ```python
