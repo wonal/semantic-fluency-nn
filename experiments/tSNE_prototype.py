@@ -44,10 +44,10 @@ def prototype():
         plot.visualize_embeddings_2D(reduced_model_2D, words, plot_title, img_title, name)
 
         # Generate 3D Embeddings Plot
-        #reduced_model_3D = plot.reduce_model(tokens, C.DIM3_PERPLEXITY, C.DIM3_COMPONENTS, C.DIM3_ITER, C.DIM3_ETA)
-        #img_title = plot.save_title(save_name[name], C.DIM3_PERPLEXITY, C.DIM3_COMPONENTS, C.DIM3_ITER, C.DIM3_ETA)
-        #plot_title = corpus_names[name] + ': 3-Dimensional Word Embeddings'
-        #plot.visualize_embeddings_3D(reduced_model_3D, words, plot_title, img_title, name)
+        reduced_model_3D = plot.reduce_model(tokens, C.DIM3_PERPLEXITY, C.DIM3_COMPONENTS, C.DIM3_ITER, C.DIM3_ETA)
+        img_title = plot.save_title(save_name[name], C.DIM3_PERPLEXITY, C.DIM3_COMPONENTS, C.DIM3_ITER, C.DIM3_ETA)
+        plot_title = corpus_names[name] + ': 3-Dimensional Word Embeddings'
+        plot.visualize_embeddings_3D(reduced_model_3D, words, plot_title, img_title, name)
 
         # Iterate to next corpus
         name += 1
