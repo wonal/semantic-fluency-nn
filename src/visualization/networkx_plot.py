@@ -3,6 +3,7 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 import src.visualization.constants as C
+from src.visualization.tsne_plot import TsnePlot
 
 
 class NetworkxPlot:
@@ -12,13 +13,15 @@ class NetworkxPlot:
         self.graph = network.graph
         self.index_to_key = network.index_to_key
 
-    def plot_most_similar_pairs(self, n, expanded=False):
+    def plot_most_similar_pairs(self, n, title="", expanded=False, epoch=0):
         from_nodes, to_nodes = self._retrieve_n_largest(n)
         from_nodes = np.apply_along_axis(self._retrieve_word, 0, from_nodes)
         to_nodes = np.apply_along_axis(self._retrieve_word, 0, to_nodes)
         if expanded:
             from_nodes, to_nodes = self._expand_edge_lists(from_nodes, to_nodes)
-        self._plot_nodes(from_nodes, to_nodes, [])
+        if not title:
+            title = "{}_most_similar".format(n)
+        self._plot_nodes(from_nodes, to_nodes, [], title, epoch)
 
     def _retrieve_n_largest(self, n):
         x_dim, y_dim = self.adj_matrix.shape
@@ -34,7 +37,9 @@ class NetworkxPlot:
         return np.array(words)
 
     @staticmethod
-    def _plot_nodes(from_list, to_list, with_color_map):
+    def _plot_nodes(from_list, to_list, with_color_map, title, epoch):
+        if epoch != 0:
+            title += "_epoch{}".format(epoch)
         df = pd.DataFrame({'from': from_list, 'to': to_list})
         graph = nx.from_pandas_edgelist(df, 'from', 'to')
         color_map = []
@@ -47,6 +52,7 @@ class NetworkxPlot:
         else:
             color_map = [C.NODE_COLOR]
         nx.draw(graph, with_labels=True, node_size=1000, node_color=color_map, edge_color='black', alpha=0.6, width=1, font_weight='bold')
+        TsnePlot.save_plot(title)
         plt.show()
 
     def _expand_edge_lists(self, from_nodes, to_nodes, have_edge_lists=True, sample=False):
@@ -68,12 +74,14 @@ class NetworkxPlot:
                 continue
         return from_list, to_list
 
-    def plot_most_connected(self, n):
+    def plot_most_connected(self, n, title="", epoch=0):
         if n < 1 or n > len(self.graph.nodes):
             raise ValueError("n must be greater than zero and less than the number of nodes in the graph.")
         most_connected = self._retrieve_most_connected(n)
         from_list, to_list = self._expand_edge_lists(most_connected, np.array([]), have_edge_lists=False)
-        self._plot_nodes(from_list, to_list, [])
+        if not title:
+            title = "{}_most_connected".format(n)
+        self._plot_nodes(from_list, to_list, [], title, epoch)
 
     def _retrieve_most_connected(self, n):
         row_totals = np.sum(self.adj_matrix, axis=0)
@@ -81,18 +89,22 @@ class NetworkxPlot:
         nodes = np.take(self.graph.nodes, indices)
         return nodes
 
-    def create_custom_plot(self, words):
+    def create_custom_plot(self, words, title="", epoch=0):
         if not words:
             raise ValueError("Must enter in at least one word.")
         from_list, to_list = self._expand_edge_lists(words, np.array([]), have_edge_lists=False)
-        self._plot_nodes(from_list, to_list, [])
+        if not title:
+            title = "custom_plot"
+        self._plot_nodes(from_list, to_list, [], title, epoch)
 
-    def create_colored_path_plot(self, path):
+    def create_colored_path_plot(self, path, title="", epoch=0):
         if len(path) < 2:
             raise ValueError("Path length must be at least 2")
         from_nodes = np.array(path[:-1])
         to_nodes = np.array(path[1:])
         from_list, to_list = self._expand_edge_lists(from_nodes, to_nodes, sample=True)
-        self._plot_nodes(from_list, to_list, path)
+        if not title:
+            title = "colored_path_plot"
+        self._plot_nodes(from_list, to_list, path, title, epoch)
 
 
