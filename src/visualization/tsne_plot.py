@@ -4,7 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D  # allows for 3D plotting
 import matplotlib.cm as cm  # allows for coloring data points
 import numpy as np  # imports numpy for matrix operations
 
-from os.path import exists  # check that path exists
+from os.path import exists # check that path exists
 from os import mkdir  # directory operations
 from shutil import rmtree  # remove specific directory contents
 import src.visualization.constants as C  # constants

@@ -17,7 +17,7 @@ def prototype():
 
     # Grab cleaned corpus and run through word2vec
     for corpus in multi_corpus:
-        clean_corpus = Corpus('docs/' + corpus)
+        clean_corpus = Corpus('data/input/' + corpus)
         model = Word2Vec(clean_corpus.sentence_matrix, size=120, window=5, min_count=2, workers=8, sg=1)
 
         # Train the model

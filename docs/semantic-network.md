@@ -24,7 +24,7 @@ from gensim.models import Word2Vec
 
 
 ```python
-shakespeare = Corpus("docs/shakespeare.txt")
+shakespeare = Corpus("data/input/shakespeare.txt")
 model = Word2Vec(shakespeare.sentence_matrix, size = 120,
                  window = 5, min_count=5, workers=8, sg=1)
 ```
