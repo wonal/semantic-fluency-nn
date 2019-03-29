@@ -1,4 +1,4 @@
-from os import getcwd        # directory operations
+from os import getcwd         # directory operations
 
 # Word2Vec Model Hyperparameters
 W2V_ETA = 20
@@ -41,9 +41,8 @@ DIM3_ITER = 2400
 DIM3_ETA = 400
 
 # File/Directory Settings
-GRAPH_DIR = str(getcwd()) + '/images/'  # path and directory for saving graph images
-TEST_DIR = str(getcwd()) + '/test_results/'       # path and directory for saving data to csv files
+GRAPH_DIR = str(getcwd()) + '/data/output/images/'       # path and directory for saving graph images
+TEST_DIR = str(getcwd()) + '/data/output/test_results/'       # path and directory for saving data to csv files
 DELETE_GRAPHS = False                   # True clears all images, False leaves existing images
 
-PATH_COLOR = 'green'
-NODE_COLOR = 'orange'
+

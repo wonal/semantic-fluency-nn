@@ -25,7 +25,7 @@ Loads a corpus into a text_wrangler.Corpus object
 
 
 ```python
-shakespeare = Corpus("docs/shakespeare.txt")
+shakespeare = Corpus("data/input/shakespeare.txt")
 ```
 
 ## 2 Sentence Matrix <a name="sentence_matrix"></a>

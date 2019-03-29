@@ -1,5 +1,3 @@
-import os
-os.chdir('..')
 
 import matplotlib.pyplot as plt  # allows for plotting
 import seaborn as sns
@@ -76,6 +74,8 @@ class IRTPlot:
         :param text: True if data is composed of strings, False otherwise
         """
         path = C.TEST_DIR
+        if not exists(path):
+            mkdir(path)
         with open(path + filename + '.csv', 'w', newline='') as f:
             wr = csv.writer(f, delimiter=',', quoting=csv.QUOTE_NONE)
             wr.writerow(headers)

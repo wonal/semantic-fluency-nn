@@ -1,3 +1,5 @@
+import os
+os.chdir('..')
 from src.text.text_wrangler import Corpus
 from gensim.models import Word2Vec
 from src.graph.semantic_network import SemanticNetwork
@@ -24,7 +26,7 @@ def experiments():
 
     # Clean corpus and run through Word2Vec
     corpus = ['shakespeare.txt', 'fairy_tales.txt']
-    clean_corpus = Corpus('docs/' + corpus[1])
+    clean_corpus = Corpus('data/input/' + corpus[1])
     model = Word2Vec(clean_corpus.sentence_matrix, size=120,
                      window=5, min_count=5, workers=8, sg=1)
 
